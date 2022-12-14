@@ -58,7 +58,7 @@ $beforeAnswerQuery = $connection->query($queryGetAnswer);
         <div class="form-group my-4">
             <label for="statusSelect" class="d-block">Set poll status</label>
             <select class="form-control" id="statusSelect" required name="statusSelect">
-                <option value="Posted">Posted</option>
+                <option value="Posted" selected>Posted</option>
                 <option value="Draft">Draft</option>
             </select>
         </div>
