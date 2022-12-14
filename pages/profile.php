@@ -52,8 +52,9 @@ $allPollsData = ($connection->query($pollsQuery))->fetch_all();
             while ($poll = $pollsData->fetch_assoc()) { ?>
                 <div class="list-group-item d-flex justify-content-between align-items-center px-5 py-3">
                     <div>
-                        <h6 class="text-secondary font-weight-bolder">Title: <span
-                                    class="font-weight-light"><?= $poll['title'] ?></span></h6>
+                        <h6 class="text-secondary font-weight-bolder">Title:
+                            <span class="font-weight-light"><?= $poll['title'] ?></span>
+                        </h6>
                         <h6 class="text-secondary font-weight-bolder">Answers:</h6>
                         <ul>
                             <?php
@@ -66,17 +67,18 @@ $allPollsData = ($connection->query($pollsQuery))->fetch_all();
                             } ?>
                         </ul>
                         <h6 class="text-secondary font-weight-bolder">Status: <span
-                                    <?php
-                                        if ($poll['status'] === 'Posted')
-                                            echo "<span class='text-success font-weight-light'>" . $poll['status'] . "</span>";
-                                        elseif ($poll['status'] === 'Draft')
-                                            echo "<span class='text-danger font-weight-light'>" . $poll['status'] . "</span>";
-                                    ?>
+                            <?php
+                            if ($poll['status'] === 'Posted') {
+                                echo "<span class='text-success font-weight-light'>" . $poll['status'] . "</span>";
+                            } elseif ($poll['status'] === 'Draft') {
+                                echo "<span class='text-danger font-weight-light'>" . $poll['status'] . "</span>";
+                            }
+                            ?>
                         </h6>
                     </div>
                     <div class="crud">
-                        <a href=""><img src="../images/edit.png" alt=""></a>
-                        <a href="../send/delete_poll.php?poll_id=<?=$pollId?>"><img src="../images/delete.png" alt=""></a>
+                        <a href="../pages/update_poll.php?poll_id=<?= $pollId ?>"><img src="../images/edit.png" alt=""></a>
+                        <a href="../send/delete_poll.php?poll_id=<?= $pollId ?>"><img src="../images/delete.png" alt=""></a>
                     </div>
                 </div>
                 <?php

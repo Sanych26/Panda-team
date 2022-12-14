@@ -14,11 +14,13 @@
 </head>
 <body>
 <div class="container my-5 py-5">
-    <h1 class="text-center">Welcome to our service!</h1>
-    <h3 class="text-center py-4">Please, <b>Log in</b> or <b>Sign up</b>!</h3>
-    <div class="container text-center my-5">
-        <a class="btn btn-primary" href="pages/login.php">Log in</a>
-        <a class="btn btn-success" href="pages/signup.php">Sign up</a>
+    <div class="my-5 py-5">
+        <h1 class="text-center">Welcome to our service!</h1>
+        <h3 class="text-center py-4">Please, <b>Log in</b> or <b>Sign up</b> to create your own poll!</h3>
+        <div class="container text-center my-5">
+            <a class="btn btn-primary" href="pages/login.php">Log in</a>
+            <a class="btn btn-success" href="pages/signup.php">Sign up</a>
+        </div>
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

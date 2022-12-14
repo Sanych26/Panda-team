@@ -383,7 +383,7 @@ input[type=text]::placeholder {
     cursor: pointer;
 }
 .crud a:nth-child(1) img {
-    width: 32px;
+    width: 35px;
     height: 35px;
 }
 .crud a:nth-child(2) img {
@@ -419,4 +419,10 @@ input[type=text]::placeholder {
     color: #818182;
     background-color: #fdfdfe;
     border: none;
+}
+
+.remove-answer {
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
 }
