@@ -10,28 +10,31 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
-<div class="container my-4 py-5">
+<div class="container my-5 py-5">
     <h3 class="font-weight-bolder text-center">Create your new poll</h3>
-    <form class="py-3" method="post" action="../send/new_poll.php">
+    <form class="py-3 d-inline" method="post" action="../send/new_poll.php">
         <div class="form-group">
             <label for="titleField" class="d-block">Title</label>
-            <input type="text" class="form-control" id="titleField" name="title" placeholder="Write some question">
+            <input type="text" class="form-control" id="titleField" required name="title" placeholder="Write some question">
         </div>
-        <div class="form-group d-flex justify-content-between">
-            <div class="w-50">
-                <label for="answerField" class="d-block">Answers</label>
-                <input type="text" class="form-control text-align-left" id="answerField" name="answer[]" placeholder="Write answer">
-            </div>
-            <div class="d-block">
-                <label for="numberField" class="d-block">Number of votes</label>
-                <input type="text" class="form-control text-align-left" id="numberField" name="votesNumber[]" placeholder="Votes">
+        <div class="answers-cont">
+            <div class="form-group d-flex justify-content-between add-answer-cont">
+                <div class="w-50">
+                    <label for="answerField" class="d-block">Answer</label>
+                    <input type="text" class="form-control text-align-left" id="answerField" required name="answer[]" placeholder="Write answer">
+                </div>
+                <div class="d-block">
+                    <label for="numberField" class="d-block">Number of votes</label>
+                    <input type="text" class="form-control text-align-left" id="numberField" required  name="votesNumber[]" placeholder="Votes">
+                </div>
             </div>
         </div>
-        <div class="form-group">
+        <img id="addNewAnswer" src="../images/add.png" alt="">
+        <div class="form-group my-4">
             <label for="statusSelect" class="d-block">Set poll status</label>
-            <select class="form-control" id="statusSelect" name="statusSelect">
-                <option value="posted">Posted</option>
-                <option value="draft">Draft</option>
+            <select class="form-control" id="statusSelect" required name="statusSelect">
+                <option value="Posted">Posted</option>
+                <option value="Draft">Draft</option>
             </select>
         </div>
         <input type="submit" class="btn btn-primary mx-0" value="Add poll">

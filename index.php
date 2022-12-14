@@ -1,3 +1,6 @@
+<?php
+    include_once 'config.php';
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,10 +13,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
-<div class="container">
-    <h1>Welcome to our service!</h1>
-    <h3>Please, <b>Log in</b> or <b>Sign up</b>!</h3>
-    <div class="container">
+<div class="container my-5 py-5">
+    <h1 class="text-center">Welcome to our service!</h1>
+    <h3 class="text-center py-4">Please, <b>Log in</b> or <b>Sign up</b>!</h3>
+    <div class="container text-center my-5">
         <a class="btn btn-primary" href="pages/login.php">Log in</a>
         <a class="btn btn-success" href="pages/signup.php">Sign up</a>
     </div>

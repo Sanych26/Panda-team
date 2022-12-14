@@ -1,8 +1,5 @@
 $(function(){
-    let input = jQuery('<input name="answer">');
-    jQuery('#formID').append(input);
-    $('#button').click(function (){
-        count = count+1;
-        $('#button span').text(count);
+    $('#addNewAnswer').click(function (){
+        $('.answers-cont').append("<div class='form-group d-flex justify-content-between add-answer-cont'><div class='w-50'><label for='answerField' class='d-block'>Answer</label><input type='text' class='form-control text-align-left' id='answerField' name='answer[]' placeholder='Write answer'></div><div class='d-block'><label for='numberField' class='d-block'>Number of votes</label><input type='text' class='form-control text-align-left' id='numberField' required name='votesNumber[]' placeholder='Votes'></div></div>");
     })
 })

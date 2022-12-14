@@ -8,5 +8,7 @@
 
     global $connection;
     $connection->query("INSERT INTO `users`(id, email, password) VALUES (NULL, '$email', '$hashPass')");
-    redirect('index.php');
+    $userData = ($connection->query("SELECT `id` FROM `users` WHERE `email` = '$email'"))->fetch_assoc();
+    $_SESSION['user_id'] = $userData['id'];
+    redirect('pages/profile.php');
 ?>

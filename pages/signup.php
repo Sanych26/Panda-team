@@ -12,13 +12,13 @@
 </head>
 <body>
 <div class="main-cont">
-    <div class="container  central-block">
+    <div class="container central-block">
         <div class="wrapper fadeInDown">
             <div id="formContent">
                 <div class="fadeIn first"></div>
                 <form method="post" action="/send/signup_send.php">
-                    <input type="email" id="login" class="fadeIn second" name="email" required placeholder="Enter your email">
-                    <input type="password" id="password" class="fadeIn third" name="password" required placeholder="Enter your password">
+                    <input type="email" id="login" class="fadeIn second w-100" name="email" required placeholder="Enter your email">
+                    <input type="password" id="password" class="fadeIn third w-100" name="password" required placeholder="Enter your password">
                     <input type="submit" class="fadeIn fourth btn-success" value="Sign up">
                 </form>
                 <div id="formFooter"></div>

@@ -1,5 +1,4 @@
 <?php
-
 include_once '../config.php';
 include_once '../functions.php';
 
@@ -11,9 +10,14 @@ $usersTable = $connection->query("SELECT * FROM `users`");
 $usersArr = [];
 while ($user = $usersTable->fetch_assoc()) {
     if ($email === $user['email'] && password_verify($pass, $user['password'])) {
-        redirect("pages/profile.php?id=$user[id]");
+        $_SESSION['user_email'] = $email;
+        $_SESSION['user_pass'] = $pass;
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['authorize'] = true;
+        redirect("pages/profile.php");
     } else {
-        redirect("pages/login.php");
+        echo password_verify($pass, $user['password']);
+//        redirect("pages/login.php");
     }
 }
 ?>

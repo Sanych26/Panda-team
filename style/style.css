@@ -16,6 +16,10 @@ a {
     font-weight: 400;
 }
 
+a:hover {
+    text-decoration: none!important;
+}
+
 h2 {
     text-align: center;
     font-size: 16px;
@@ -401,4 +405,18 @@ input[type=text]::placeholder {
     width: 100%;
     max-width: 150px;
 }
-
+#addNewAnswer {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+.profile-poll-items .list-group-item:nth-child(2n+1) {
+    color: #0c5460;
+    background-color: #bee5eb;
+    border: none;
+}
+.profile-poll-items .list-group-item:nth-child(2n) {
+    color: #818182;
+    background-color: #fdfdfe;
+    border: none;
+}
