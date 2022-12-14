@@ -76,7 +76,7 @@ $allPollsData = ($connection->query($pollsQuery))->fetch_all();
                     </div>
                     <div class="crud">
                         <a href=""><img src="../images/edit.png" alt=""></a>
-                        <a href=""><img src="../images/delete.png" alt=""></a>
+                        <a href="../send/delete_poll.php?poll_id=<?=$pollId?>"><img src="../images/delete.png" alt=""></a>
                     </div>
                 </div>
                 <?php
