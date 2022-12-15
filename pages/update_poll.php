@@ -3,6 +3,11 @@
 include_once '../config.php';
 include_once '../functions.php';
 
+if ($_SESSION['authorize'] !== true) {
+    header('Location: /pages/login.php');
+    exit();
+}
+
 global $connection;
 $pollId = $_GET['poll_id'];
 $queryGetPoll = "SELECT * FROM `polls` WHERE `id`='$pollId'";
@@ -26,7 +31,7 @@ $beforeAnswerQuery = $connection->query($queryGetAnswer);
 <body>
 <div class="container my-5 py-5">
     <h3 class="font-weight-bolder text-center">Update your poll</h3>
-    <form class="py-3 d-inline" method="post" action="../send/update_poll_send.php?poll_id=<?=$pollId?>">
+    <form class="py-3 d-inline" method="post" action="../send/update_poll_send.php?poll_id=<?= $pollId ?>">
         <div class="form-group">
             <label for="titleField" class="d-block">Title</label>
             <input type="text" class="form-control" id="titleField" required name="title"

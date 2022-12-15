@@ -1,8 +1,12 @@
 <?php
 
 include_once '../config.php';
+if ($_SESSION['authorize'] !== true) {
+    header('Location: /pages/login.php');
+    exit();
+}
 global $connection;
-$userId = $_SESSION['user_id'];
+$userId = $_SESSION['user_id'] ?? '';
 $userQuery = "SELECT * FROM `users` WHERE id='$userId'";
 $userData = $connection->query($userQuery);
 $profile = $userData->fetch_assoc();
