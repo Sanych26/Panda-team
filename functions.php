@@ -1,6 +1,9 @@
 <?php
-    function redirect($page) {
-        header("Location: ../$page");
-        exit();
-    }
+
+function redirect($page)
+{
+    header("Location: ../$page");
+    exit();
+}
+
 ?>
