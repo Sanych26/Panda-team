@@ -9,32 +9,14 @@ $_SESSION['email'] = $email;
 $_SESSION['password'] = $pass;
 
 global $connection;
-$usersTable = $connection->query("SELECT * FROM `users`");
-$usersArr = [];
-while ($user = $usersTable->fetch_assoc()) {
-//    if ($email === $user['email'] && password_verify($pass, $user['password'])) {
-//        $_SESSION['user_email'] = $email;
-//        $_SESSION['user_pass'] = $pass;
-//        $_SESSION['user_id'] = $user['id'];
-//        $_SESSION['authorize'] = true;
-//        $_SESSION['email_error'] = '';
-//        $_SESSION['password_error'] = '';
-//        redirect("pages/profile.php");
-//    } elseif ($email !== $user['email']) {
-////        echo $email . '<br>';
-////        echo $user['email'] . '<br>';
-//        $_SESSION['email_error'] = 'Incorrect login!';
-//        redirect("pages/login.php");
-//    } elseif ($pass !== $user['password']) {
-//        $_SESSION['password_error'] = 'Incorrect password!';
-//        redirect("pages/login.php");
-//    }
+$usersTable = $connection->query("SELECT * FROM `users` WHERE `email` = '$email'");
+$user = $usersTable->fetch_assoc();
 
-
-    if ($email === '' || $email !== $user['email']) {
+//controller -> login()
+    if (empty($email) || empty($user)) {
         $_SESSION['login_error'] = "Email or password is invalid!";
         redirect("pages/login.php");
-    } elseif ($pass === '' || password_verify($pass, $user['password']) === false) {
+    } elseif (empty($pass) || password_verify($pass, $user['password']) === false) {
         $_SESSION['login_error'] = "Email or password is invalid!";
         redirect("pages/login.php");
     } else {
@@ -45,5 +27,5 @@ while ($user = $usersTable->fetch_assoc()) {
         $_SESSION['authorize'] = true;
         redirect("pages/profile.php");
     }
-}
+
 ?>

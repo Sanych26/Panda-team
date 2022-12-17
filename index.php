@@ -1,3 +1,8 @@
+<?php
+
+session_start();
+unset($_SESSION['login_error']);
+?>
 <!doctype html>
 <html lang="en">
 <head>
