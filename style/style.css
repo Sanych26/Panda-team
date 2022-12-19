@@ -455,13 +455,13 @@ input[type=text]::placeholder {
     cursor: pointer;
 }
 
-.profile-poll-items .list-group-item:nth-child(2n+1) {
+.profile-poll-items .list-group-item:nth-child(odd) {
     color: #0c5460;
     background-color: #bee5eb;
     border: none;
 }
 
-.profile-poll-items .list-group-item:nth-child(2n) {
+.profile-poll-items .list-group-item:nth-child(even) {
     color: #818182;
     background-color: #fdfdfe;
     border: none;

@@ -10,7 +10,20 @@ $userId = $_SESSION['user_id'] ?? '';
 $userQuery = "SELECT * FROM `users` WHERE id='$userId'";
 $userData = $connection->query($userQuery);
 $profile = $userData->fetch_assoc();
+
+$filterStatus = $_GET['status']??'';
+$filterDate = $_GET['filterDate']??'';
+$filterTitle = $_GET['title']??'';
+
 $pollsQuery = "SELECT * FROM `polls` WHERE author_id='$userId'";
+if (!empty($filterStatus) && $filterStatus!=='All') {
+    $pollsQuery = $pollsQuery . " AND `status` = '$filterStatus'";
+    echo $pollsQuery;
+
+} elseif (!empty($filterTitle)) {
+    $pollsQuery = $pollsQuery . " AND `title` LIKE '$filterTitle'";
+    echo $pollsQuery;
+}
 $pollsData = $connection->query($pollsQuery);
 $allPollsData = ($connection->query($pollsQuery))->fetch_all();
 ?>
@@ -46,6 +59,27 @@ $allPollsData = ($connection->query($pollsQuery))->fetch_all();
         <div class="col-md-2">
             <a href="/send/exit.php" class="btn-sm profile-edit-btn btn-danger">Exit</a>
         </div>
+    </div>
+    <div class="row d-block">
+            <form class="d-flex" action="" method="get">
+                <div>
+                    <h6>Choose status: </h6>
+                    <select class="px-2 py-1" name="status" id="filter-status" onchange="this.form.submit()">
+                        <option value='All'>All</option>;
+                        <option value='Posted'>Posted</option>;
+                        <option value='Draft'>Draft</option>;
+                    </select>
+                </div>
+                <div class="mx-5">
+                    <h6>Choose title: </h6>
+                    <input type="search" name="title" id="filter-title">
+                </div>
+                <div>
+                    <h6>Choose date: </h6>
+                    <input type="date" name="filterDate">
+                </div>
+            </form>
+        <h5 class="text-right">All polls: <b class="text-danger"><?= $pollsData->num_rows ?></b></h5>
     </div>
     <div class="row d-block">
         <div class="d-flex flex-column profile-poll-items">
