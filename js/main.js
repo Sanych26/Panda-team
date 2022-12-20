@@ -11,25 +11,26 @@ $(function () {
      *
      * getting GET params
      */
-    function getUrlParams()
-    {
+    function getUrlParams() {
         let params = [], hash;
         let hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-        for(let i = 0; i < hashes.length; i++)
-        {
+        for (let i = 0; i < hashes.length; i++) {
             hash = hashes[i].split('=');
             params.push(hash[0]);
             params[hash[0]] = hash[1];
         }
         return params;
     }
+
     let statusGetParam = getUrlParams()['status'];
     let titleGetParam = getUrlParams()['title'];
+    let dateGetParam = getUrlParams()['date'];
 
     /**
      * Filter
      */
     let filterTitle = $('#filter-title');
+    let filterDate = $('#filter-date');
     filterTitle.keypress(function (e) {
         if (e.which === 13) {
             $(this).parent().parent().submit();
@@ -37,5 +38,11 @@ $(function () {
     });
     $("#filter-status option[value='" + statusGetParam + "']").attr('selected', 'selected');
     filterTitle.val(titleGetParam);
+    filterDate.val(dateGetParam);
 
+    $("#clear-filter").click(function () {
+        let currentUrl = window.location.href;
+        currentUrl = currentUrl.split('?')[0];
+        window.location.replace(currentUrl);
+    })
 })

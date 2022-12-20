@@ -12,18 +12,25 @@ $userData = $connection->query($userQuery);
 $profile = $userData->fetch_assoc();
 
 $filterStatus = $_GET['status']??'';
-$filterDate = $_GET['filterDate']??'';
+$filterDate = $_GET['date']??'';
 $filterTitle = $_GET['title']??'';
 
 $pollsQuery = "SELECT * FROM `polls` WHERE author_id='$userId'";
-if (!empty($filterStatus) && $filterStatus!=='All') {
-    $pollsQuery = $pollsQuery . " AND `status` = '$filterStatus'";
-    echo $pollsQuery;
+if (!empty($filterStatus) && $filterStatus!=='All')
+    $pollsQuery .= " AND `status` = '$filterStatus'";
+else
+    unset($_GET['status']);
 
-} elseif (!empty($filterTitle)) {
-    $pollsQuery = $pollsQuery . " AND `title` LIKE '$filterTitle'";
-    echo $pollsQuery;
-}
+if (!empty($filterTitle))
+    $pollsQuery .= " AND `title` LIKE '%$filterTitle%'";
+else
+    unset($_GET['title']);
+
+if (!empty($filterDate))
+    $pollsQuery .= " AND `date` = '$filterDate'";
+else
+    unset($_GET['date']);
+
 $pollsData = $connection->query($pollsQuery);
 $allPollsData = ($connection->query($pollsQuery))->fetch_all();
 ?>
@@ -35,7 +42,7 @@ $allPollsData = ($connection->query($pollsQuery))->fetch_all();
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Panda Team Task</title>
-    <link rel="stylesheet" href="/style/style.css">
+    <link rel="stylesheet" href="../style/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
@@ -57,14 +64,14 @@ $allPollsData = ($connection->query($pollsQuery))->fetch_all();
             </div>
         </div>
         <div class="col-md-2">
-            <a href="/send/exit.php" class="btn-sm profile-edit-btn btn-danger">Exit</a>
+            <a href="../send/exit.php" class="btn-sm profile-edit-btn btn-danger">Exit</a>
         </div>
     </div>
-    <div class="row d-block">
+    <div class="row d-block px-4">
             <form class="d-flex" action="" method="get">
                 <div>
                     <h6>Choose status: </h6>
-                    <select class="px-2 py-1" name="status" id="filter-status" onchange="this.form.submit()">
+                    <select class="px-2 py-1 custom-select custom-select-sm" name="status" id="filter-status" onchange="this.form.submit()">
                         <option value='All'>All</option>;
                         <option value='Posted'>Posted</option>;
                         <option value='Draft'>Draft</option>;
@@ -72,11 +79,16 @@ $allPollsData = ($connection->query($pollsQuery))->fetch_all();
                 </div>
                 <div class="mx-5">
                     <h6>Choose title: </h6>
-                    <input type="search" name="title" id="filter-title">
+                    <div class="form-outline">
+                        <input type="search" name="title" id="filter-title" class="form-control form-control-sm" placeholder="Search title" aria-label="Search" />
+                    </div>
                 </div>
                 <div>
                     <h6>Choose date: </h6>
-                    <input type="date" name="filterDate">
+                    <input type="date" name="date" id="filter-date" onchange="this.form.submit()">
+                </div>
+                <div class="d-flex flex-column justify-content-end px-5">
+                    <div class="btn-sm btn-secondary" id="clear-filter">Clear</div>
                 </div>
             </form>
         <h5 class="text-right">All polls: <b class="text-danger"><?= $pollsData->num_rows ?></b></h5>
@@ -133,6 +145,6 @@ $allPollsData = ($connection->query($pollsQuery))->fetch_all();
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
-<script src="/js/main.js"></script>
+<script src="../js/main.js"></script>
 </body>
 </html>
